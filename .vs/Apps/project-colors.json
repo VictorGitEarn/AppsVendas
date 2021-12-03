@@ -1,0 +1,46 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "7044564b-9d53-494a-96a2-0a6a154b9c01": {
+      "ProjectGuid": "7044564b-9d53-494a-96a2-0a6a154b9c01",
+      "DisplayName": "Apps.APIRest",
+      "ColorIndex": 0
+    },
+    "4e99c788-ee82-4cb4-a1d9-defef087dd47": {
+      "ProjectGuid": "4e99c788-ee82-4cb4-a1d9-defef087dd47",
+      "DisplayName": "Apps.APIRest",
+      "ColorIndex": 1
+    },
+    "a50bdce3-4397-4f05-b435-d55c9cf3932c": {
+      "ProjectGuid": "a50bdce3-4397-4f05-b435-d55c9cf3932c",
+      "DisplayName": "Apps.APIRest",
+      "ColorIndex": 2
+    },
+    "68a64b6b-eb6d-40fa-8f46-4fc884ebced3": {
+      "ProjectGuid": "68a64b6b-eb6d-40fa-8f46-4fc884ebced3",
+      "DisplayName": "Apps.APIRest",
+      "ColorIndex": 3
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "89d96a89-209b-49e8-adaa-7b5b2ca36d46": {
+      "ProjectGuid": "89d96a89-209b-49e8-adaa-7b5b2ca36d46",
+      "DisplayName": "MongoDB",
+      "ColorIndex": 4
+    },
+    "0697e1a0-921b-47e1-9bdd-2b5106834620": {
+      "ProjectGuid": "0697e1a0-921b-47e1-9bdd-2b5106834620",
+      "DisplayName": "Apps.Data",
+      "ColorIndex": 5
+    },
+    "d63bd9c7-680d-4464-b4d6-2c19e4703a68": {
+      "ProjectGuid": "d63bd9c7-680d-4464-b4d6-2c19e4703a68",
+      "DisplayName": "Apps.Domain",
+      "ColorIndex": 6
+    }
+  },
+  "NextColorIndex": 7
+}

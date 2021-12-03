@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "2f2dIc1LNs7VyO3zLtCaqteMbQL+gXgUEeAahvxov5I=",
+  "Source": "Apps.APIRest",
+  "BasePath": "_content/Apps.APIRest",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
