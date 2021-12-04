@@ -8,7 +8,7 @@ namespace Apps.APIRest.Models.ViewModels
         public string Name { get; set; }
         public double Value { get; set; }
 
-        public AppsToSellModels(AppsToSell appsToSell)
+        public AppsToSellModels(Product appsToSell)
         {
             _id = appsToSell._id.ToString();
             Name = appsToSell.Name;

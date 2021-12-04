@@ -10,8 +10,8 @@ using MongoDB.Driver;
 
 namespace Apps.Data.Repository
 {
-    public class AppsToSellRepository : MongoDbRepository<AppsToSell>
+    public class ProductRepository : MongoDbRepository<Product>
     {
-        public AppsToSellRepository(MongoDbContext dbContext) : base(dbContext) { }
+        public ProductRepository(MongoDbContext dbContext) : base(dbContext) { }
     }
 }

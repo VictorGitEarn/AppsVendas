@@ -30,7 +30,7 @@ services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOpti
 services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 services.AddScoped<IUser, MongoAppUser>();
 
-services.AddScoped<IAppsToSellService, AppsToSellService>();
+services.AddScoped<IProductService, ProductService>();
 #endregion
 var app = builder.Build();
 

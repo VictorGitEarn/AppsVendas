@@ -2,8 +2,8 @@
 
 namespace Apps.Services.Interfaces
 {
-    public interface IAppsToSellService
+    public interface IProductService
     {
-        Task<List<AppsToSell>> FindAll();
+        Task<List<Product>> FindAll();
     }
 }

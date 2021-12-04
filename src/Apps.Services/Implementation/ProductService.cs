@@ -9,23 +9,23 @@ using System.Threading.Tasks;
 
 namespace Apps.Services.Implementation
 {
-    public class AppsToSellService : IAppsToSellService
+    public class ProductService : IProductService
     {
-        private readonly AppsToSellRepository _appsToSellRepository;
+        private readonly ProductRepository _appsToSellRepository;
 
-        public AppsToSellService(AppsToSellRepository appsToSellRepository)
+        public ProductService(ProductRepository appsToSellRepository)
         {
             _appsToSellRepository = appsToSellRepository;
         }
 
-        public async Task<List<AppsToSell>> FindAll()
+        public async Task<List<Product>> FindAll()
         {
             var apps = await _appsToSellRepository.FindAll();
             
             if (apps.Count is not 0)
                 return apps;
 
-            apps = new AppsToSell().CreateSamples();
+            apps = new Product().CreateSamples();
 
             await _appsToSellRepository.InsertMany(apps);
 

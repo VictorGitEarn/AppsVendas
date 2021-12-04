@@ -7,11 +7,11 @@ namespace Apps.APIRest.Controllers.V1
 {
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}")]
-    public class AppsToSellController : MainController
+    public class ProductController : MainController
     {
-        private readonly IAppsToSellService _appsToSellService;
+        private readonly IProductService _appsToSellService;
 
-        public AppsToSellController(INotes notes, IUser userApp, IAppsToSellService appsToSellService) : base(notes, userApp) 
+        public ProductController(INotes notes, IUser userApp, IProductService appsToSellService) : base(notes, userApp) 
         {
             _appsToSellService = appsToSellService;
         }

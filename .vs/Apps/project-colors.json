@@ -40,7 +40,17 @@
       "ProjectGuid": "d63bd9c7-680d-4464-b4d6-2c19e4703a68",
       "DisplayName": "Apps.Domain",
       "ColorIndex": 6
+    },
+    "ba912133-2816-499e-9817-380526bdfc8e": {
+      "ProjectGuid": "ba912133-2816-499e-9817-380526bdfc8e",
+      "DisplayName": "Apps.Services",
+      "ColorIndex": 7
+    },
+    "1f524ce0-02d5-4917-8651-76e8197e044b": {
+      "ProjectGuid": "1f524ce0-02d5-4917-8651-76e8197e044b",
+      "DisplayName": "Apps.Services",
+      "ColorIndex": 8
     }
   },
-  "NextColorIndex": 7
+  "NextColorIndex": 9
 }
