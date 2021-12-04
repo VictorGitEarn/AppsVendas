@@ -55,3 +55,5 @@ C:\Users\Victor\Desktop\Estudo\ApiDeApps\Apps\src\Apps.APIRest\bin\Debug\net6.0\
 C:\Users\Victor\Desktop\Estudo\ApiDeApps\Apps\src\Apps.APIRest\bin\Debug\net6.0\AspNetCore.Identity.Mongo.dll
 C:\Users\Victor\Desktop\Estudo\ApiDeApps\Apps\src\Apps.APIRest\bin\Debug\net6.0\Apps.Domain.dll
 C:\Users\Victor\Desktop\Estudo\ApiDeApps\Apps\src\Apps.APIRest\bin\Debug\net6.0\Apps.Domain.pdb
+C:\Users\Victor\Desktop\Estudo\ApiDeApps\Apps\src\Apps.APIRest\bin\Debug\net6.0\Apps.Services.dll
+C:\Users\Victor\Desktop\Estudo\ApiDeApps\Apps\src\Apps.APIRest\bin\Debug\net6.0\Apps.Services.pdb

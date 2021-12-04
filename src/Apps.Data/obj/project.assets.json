@@ -2,6 +2,21 @@
   "version": 3,
   "targets": {
     "net6.0": {
+      "AspNetCore.Identity.Mongo/8.3.3": {
+        "type": "package",
+        "dependencies": {
+          "MongoDB.Driver": "2.13.2"
+        },
+        "compile": {
+          "lib/net5.0/AspNetCore.Identity.Mongo.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/AspNetCore.Identity.Mongo.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "DnsClient/1.4.0": {
         "type": "package",
         "compile": {
@@ -194,10 +209,38 @@
         "build": {
           "buildTransitive/netcoreapp3.1/_._": {}
         }
+      },
+      "Apps.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "AspNetCore.Identity.Mongo": "8.3.3"
+        },
+        "compile": {
+          "bin/placeholder/Apps.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Apps.Domain.dll": {}
+        }
       }
     }
   },
   "libraries": {
+    "AspNetCore.Identity.Mongo/8.3.3": {
+      "sha512": "uZ68C3sHqDMubnyRCAmgxNHc3iFKEFEHXd0fSUvV3maVGceFOottIm8roCWbmsOhVJc/XIVx2keY3UlRTFrgNQ==",
+      "type": "package",
+      "path": "aspnetcore.identity.mongo/8.3.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "aspnetcore.identity.mongo.8.3.3.nupkg.sha512",
+        "aspnetcore.identity.mongo.nuspec",
+        "lib/net5.0/AspNetCore.Identity.Mongo.dll",
+        "lib/netcoreapp3.1/AspNetCore.Identity.Mongo.dll",
+        "lib/netstandard2.1/AspNetCore.Identity.Mongo.dll"
+      ]
+    },
     "DnsClient/1.4.0": {
       "sha512": "CO1NG1zQdV0nEAXmr/KppLZ0S1qkaPwV0kPX5YPgmYBtrBVh1XMYHM54IXy3RBJu1k4thFtpzwo4HNHqxiuFYw==",
       "type": "package",
@@ -485,10 +528,16 @@
         "system.runtime.compilerservices.unsafe.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "Apps.Domain/1.0.0": {
+      "type": "project",
+      "path": "../Apps.Domain/Apps.Domain.csproj",
+      "msbuildProject": "../Apps.Domain/Apps.Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "Apps.Domain >= 1.0.0",
       "Microsoft.Extensions.Configuration.Abstractions >= 6.0.0",
       "Microsoft.Extensions.DependencyInjection.Abstractions >= 6.0.0",
       "MongoDB.Driver >= 2.14.0"
@@ -528,7 +577,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Victor\\Desktop\\Estudo\\ApiDeApps\\Apps\\src\\Apps.Domain\\Apps.Domain.csproj": {
+              "projectPath": "C:\\Users\\Victor\\Desktop\\Estudo\\ApiDeApps\\Apps\\src\\Apps.Domain\\Apps.Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

@@ -10,6 +10,7 @@
         "dependencies": {
           "Apps.Data": "1.0.0",
           "Apps.Domain": "1.0.0",
+          "Apps.Services": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.0",
           "Microsoft.AspNetCore.Mvc.Versioning": "5.0.0",
           "Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer": "5.0.0",
@@ -316,6 +317,7 @@
       "System.Security.Cryptography.Cng/4.5.0": {},
       "Apps.Data/1.0.0": {
         "dependencies": {
+          "Apps.Domain": "1.0.0",
           "Microsoft.Extensions.Configuration.Abstractions": "6.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
           "MongoDB.Driver": "2.14.0"
@@ -330,6 +332,15 @@
         },
         "runtime": {
           "Apps.Domain.dll": {}
+        }
+      },
+      "Apps.Services/1.0.0": {
+        "dependencies": {
+          "Apps.Data": "1.0.0",
+          "Apps.Domain": "1.0.0"
+        },
+        "runtime": {
+          "Apps.Services.dll": {}
         }
       }
     }
@@ -556,6 +567,11 @@
       "sha512": ""
     },
     "Apps.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Apps.Services/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

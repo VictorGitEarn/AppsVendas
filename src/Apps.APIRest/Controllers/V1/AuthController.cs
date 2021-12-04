@@ -1,7 +1,9 @@
 ﻿using Apps.APIRest.Configuration.JWT;
+using Apps.APIRest.Extentions;
 using Apps.APIRest.Models;
 using Apps.Domain.Business;
 using Apps.Domain.Business.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -28,17 +30,19 @@ namespace Apps.APIRest.Controllers.V1
             _appSettings = appSettings.Value;
         }
 
+        [AllowAnonymous]
         [HttpPost("nova-conta")]
         public async Task<ActionResult> Registrar(RegisterUserViewModel registerUser)
         {
             if (!ModelState.IsValid) return CustomResponse(ModelState);
 
-            var user = new User
+            if (ValidateSocialSecurity.IsValid(registerUser.SocialSecurity) is not true)
             {
-                UserName = registerUser.Email,
-                Email = registerUser.Email,
-                EmailConfirmed = true
-            };
+                NotifyError("Cpf inválido.");
+                return CustomResponse(registerUser);
+            }
+
+            var user = registerUser.MapearParaUser();
 
             var result = await _userManager.CreateAsync(user, registerUser.Password);
 
@@ -56,6 +60,7 @@ namespace Apps.APIRest.Controllers.V1
             return CustomResponse(registerUser);
         }
 
+        [AllowAnonymous]
         [HttpPost("entrar")]
         public async Task<ActionResult> Login(LoginUserViewModel loginUser)
         {

@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "KHK4RVFl1/tEnF9RBKibXxNLEPPkq9rD1Lh7fi4ZoKFZE98bhD+79DmtesBp9K8gwQjmyfPaHRYYiwt60f2JzQ==",
+  "dgSpecHash": "frEp5QW6NP3UGJval9G3VzyMV8+YNci2sZR1UNlAuHoyfXF0bTnXxxdG739gLtSHEFFDZaWqw4zf2q75s11/qg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Victor\\Desktop\\Estudo\\ApiDeApps\\Apps\\src\\Apps.Data\\Apps.Data.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Victor\\.nuget\\packages\\aspnetcore.identity.mongo\\8.3.3\\aspnetcore.identity.mongo.8.3.3.nupkg.sha512",
     "C:\\Users\\Victor\\.nuget\\packages\\dnsclient\\1.4.0\\dnsclient.1.4.0.nupkg.sha512",
     "C:\\Users\\Victor\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\6.0.0\\microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\Victor\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",

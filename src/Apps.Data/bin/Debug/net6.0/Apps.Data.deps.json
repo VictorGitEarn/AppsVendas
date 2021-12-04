@@ -8,12 +8,24 @@
     ".NETCoreApp,Version=v6.0": {
       "Apps.Data/1.0.0": {
         "dependencies": {
+          "Apps.Domain": "1.0.0",
           "Microsoft.Extensions.Configuration.Abstractions": "6.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
           "MongoDB.Driver": "2.14.0"
         },
         "runtime": {
           "Apps.Data.dll": {}
+        }
+      },
+      "AspNetCore.Identity.Mongo/8.3.3": {
+        "dependencies": {
+          "MongoDB.Driver": "2.14.0"
+        },
+        "runtime": {
+          "lib/net5.0/AspNetCore.Identity.Mongo.dll": {
+            "assemblyVersion": "8.3.3.0",
+            "fileVersion": "8.3.3.0"
+          }
         }
       },
       "DnsClient/1.4.0": {
@@ -27,31 +39,12 @@
       "Microsoft.Extensions.Configuration.Abstractions/6.0.0": {
         "dependencies": {
           "Microsoft.Extensions.Primitives": "6.0.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.dll": {
-            "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.0.21.52210"
-          }
         }
       },
-      "Microsoft.Extensions.DependencyInjection.Abstractions/6.0.0": {
-        "runtime": {
-          "lib/net6.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
-            "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.0.21.52210"
-          }
-        }
-      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/6.0.0": {},
       "Microsoft.Extensions.Primitives/6.0.0": {
         "dependencies": {
           "System.Runtime.CompilerServices.Unsafe": "6.0.0"
-        },
-        "runtime": {
-          "lib/net6.0/Microsoft.Extensions.Primitives.dll": {
-            "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.0.21.52210"
-          }
         }
       },
       "MongoDB.Bson/2.14.0": {
@@ -164,7 +157,15 @@
         }
       },
       "System.Buffers/4.5.1": {},
-      "System.Runtime.CompilerServices.Unsafe/6.0.0": {}
+      "System.Runtime.CompilerServices.Unsafe/6.0.0": {},
+      "Apps.Domain/1.0.0": {
+        "dependencies": {
+          "AspNetCore.Identity.Mongo": "8.3.3"
+        },
+        "runtime": {
+          "Apps.Domain.dll": {}
+        }
+      }
     }
   },
   "libraries": {
@@ -172,6 +173,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "AspNetCore.Identity.Mongo/8.3.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-uZ68C3sHqDMubnyRCAmgxNHc3iFKEFEHXd0fSUvV3maVGceFOottIm8roCWbmsOhVJc/XIVx2keY3UlRTFrgNQ==",
+      "path": "aspnetcore.identity.mongo/8.3.3",
+      "hashPath": "aspnetcore.identity.mongo.8.3.3.nupkg.sha512"
     },
     "DnsClient/1.4.0": {
       "type": "package",
@@ -249,6 +257,11 @@
       "sha512": "sha512-/iUeP3tq1S0XdNNoMz5C9twLSrM/TH+qElHkXWaPvuNOt+99G75NrV0OS2EqHx5wMN7popYjpc8oTjC1y16DLg==",
       "path": "system.runtime.compilerservices.unsafe/6.0.0",
       "hashPath": "system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+    },
+    "Apps.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

@@ -1,11 +1,13 @@
 ﻿using Apps.Domain.Business.Interfaces;
 using Apps.Domain.Business.Notes;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using MongoDB.Bson;
 
 namespace Apps.APIRest.Controllers
 {
+    [Authorize]
     [ApiController]
     public abstract class MainController : ControllerBase
     {

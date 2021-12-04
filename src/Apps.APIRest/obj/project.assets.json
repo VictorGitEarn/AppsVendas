@@ -438,6 +438,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "Apps.Domain": "1.0.0",
           "Microsoft.Extensions.Configuration.Abstractions": "6.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
           "MongoDB.Driver": "2.14.0"
@@ -460,6 +461,20 @@
         },
         "runtime": {
           "bin/placeholder/Apps.Domain.dll": {}
+        }
+      },
+      "Apps.Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Apps.Data": "1.0.0",
+          "Apps.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Apps.Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Apps.Services.dll": {}
         }
       }
     }
@@ -1225,12 +1240,18 @@
       "type": "project",
       "path": "../Apps.Domain/Apps.Domain.csproj",
       "msbuildProject": "../Apps.Domain/Apps.Domain.csproj"
+    },
+    "Apps.Services/1.0.0": {
+      "type": "project",
+      "path": "../Apps.Services/Apps.Services.csproj",
+      "msbuildProject": "../Apps.Services/Apps.Services.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
       "Apps.Data >= 1.0.0",
       "Apps.Domain >= 1.0.0",
+      "Apps.Services >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 6.0.0",
       "Microsoft.AspNetCore.Mvc.Versioning >= 5.0.0",
       "Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer >= 5.0.0",
@@ -1278,6 +1299,9 @@
             },
             "C:\\Users\\Victor\\Desktop\\Estudo\\ApiDeApps\\Apps\\src\\Apps.Domain\\Apps.Domain.csproj": {
               "projectPath": "C:\\Users\\Victor\\Desktop\\Estudo\\ApiDeApps\\Apps\\src\\Apps.Domain\\Apps.Domain.csproj"
+            },
+            "C:\\Users\\Victor\\Desktop\\Estudo\\ApiDeApps\\Apps\\src\\Apps.Services\\Apps.Services.csproj": {
+              "projectPath": "C:\\Users\\Victor\\Desktop\\Estudo\\ApiDeApps\\Apps\\src\\Apps.Services\\Apps.Services.csproj"
             }
           }
         }

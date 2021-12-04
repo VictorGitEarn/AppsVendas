@@ -10,3 +10,6 @@ C:\Users\Victor\Desktop\Estudo\ApiDeApps\Apps\src\Apps.Data\obj\Debug\net6.0\App
 C:\Users\Victor\Desktop\Estudo\ApiDeApps\Apps\src\Apps.Data\obj\Debug\net6.0\Apps.Data.dll
 C:\Users\Victor\Desktop\Estudo\ApiDeApps\Apps\src\Apps.Data\obj\Debug\net6.0\ref\Apps.Data.dll
 C:\Users\Victor\Desktop\Estudo\ApiDeApps\Apps\src\Apps.Data\obj\Debug\net6.0\Apps.Data.pdb
+C:\Users\Victor\Desktop\Estudo\ApiDeApps\Apps\src\Apps.Data\bin\Debug\net6.0\Apps.Domain.dll
+C:\Users\Victor\Desktop\Estudo\ApiDeApps\Apps\src\Apps.Data\bin\Debug\net6.0\Apps.Domain.pdb
+C:\Users\Victor\Desktop\Estudo\ApiDeApps\Apps\src\Apps.Data\obj\Debug\net6.0\Apps.Data.csproj.CopyComplete

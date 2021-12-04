@@ -3,9 +3,10 @@ using MongoDB.Driver;
 
 namespace Apps.Data.Base
 {
-    public abstract class MongoDbRepository<T> : IMongoDbRepository<T>
+    public abstract class MongoDbRepository<T>
     {
         private readonly IMongoCollection<T> _collection;
+
         protected FilterDefinitionBuilder<T> Filter => Builders<T>.Filter;
 
         public MongoDbRepository(MongoDbContext dbContext)
@@ -13,21 +14,19 @@ namespace Apps.Data.Base
             _collection = dbContext.GetCollection<T>();
         }
 
-        public void Insert(T document)
+        public async Task Insert(T document)
         {
-            _collection.InsertOne(document);
+            await _collection.InsertOneAsync(document);
         }
 
-        public void Replace(T document)
+        public async Task InsertMany(List<T> documents)
         {
-            var id = document.GetType().GetProperty("_id").GetValue(document, null);
+            await _collection.InsertManyAsync(documents);
+        }
 
-            if (id is not ObjectId || (ObjectId)id == default)
-            {
-                throw new ArgumentException("_id deve ser informado no objeto");
-            }
-
-            _collection.ReplaceOne(Filter.Eq("_id", id), document);
+        public async Task UpdateOneAsync(FilterDefinition<T> builders, UpdateDefinition<T> update)
+        {
+            await _collection.UpdateOneAsync(Builders<T>.Filter.And(builders), update);
         }
 
         public T FindById(ObjectId id)
@@ -49,6 +48,16 @@ namespace Apps.Data.Base
             var where = Filter.Eq("_id", id);
 
             return _collection.DeleteOne(where);
+        }
+
+        public async Task<List<T>> FindAsync(FilterDefinition<T> builders)
+        {
+            return (await _collection.FindAsync(builders)).ToList();
+        }
+
+        public async Task<List<T>> FindAll()
+        {
+            return await _collection.Find(_ => true).ToListAsync();
         }
     }
 }

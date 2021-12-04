@@ -4,6 +4,8 @@ using Apps.APIRest.Models;
 using Apps.Data.Config;
 using Apps.Domain.Business.Interfaces;
 using Apps.Domain.Business.Notes;
+using Apps.Services.Implementation;
+using Apps.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -27,6 +29,8 @@ services.AddScoped<INotes, Note>();
 services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
 services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 services.AddScoped<IUser, MongoAppUser>();
+
+services.AddScoped<IAppsToSellService, AppsToSellService>();
 #endregion
 var app = builder.Build();
 
@@ -34,7 +38,7 @@ var app = builder.Build();
 
 app.MapControllers();
 
-app.UseAuthentication();
+app.UseAuthorization();
 
 if (app.Environment.IsDevelopment())
 {
