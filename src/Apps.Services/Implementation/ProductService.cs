@@ -1,6 +1,7 @@
 ﻿using Apps.Data.Repository;
 using Apps.Domain.Business;
 using Apps.Services.Interfaces;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,25 +12,30 @@ namespace Apps.Services.Implementation
 {
     public class ProductService : IProductService
     {
-        private readonly ProductRepository _appsToSellRepository;
+        private readonly ProductRepository _productRepository;
 
-        public ProductService(ProductRepository appsToSellRepository)
+        public ProductService(ProductRepository procuctRepository)
         {
-            _appsToSellRepository = appsToSellRepository;
+            _productRepository = procuctRepository;
         }
 
         public async Task<List<Product>> FindAll()
         {
-            var apps = await _appsToSellRepository.FindAll();
+            var apps = await _productRepository.FindAll();
             
             if (apps.Count is not 0)
                 return apps;
 
             apps = new Product().CreateSamples();
 
-            await _appsToSellRepository.InsertMany(apps);
+            await _productRepository.InsertMany(apps);
 
             return apps;
+        }
+
+        public async Task<Product> FindById(string id)
+        {
+            return await _productRepository.FindById(new ObjectId(id));
         }
     }
 }

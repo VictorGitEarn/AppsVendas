@@ -9,3 +9,4 @@ C:\Users\Victor\Desktop\Estudo\ApiDeApps\Apps\src\Apps.Domain\obj\Debug\net6.0\A
 C:\Users\Victor\Desktop\Estudo\ApiDeApps\Apps\src\Apps.Domain\obj\Debug\net6.0\Apps.Domain.dll
 C:\Users\Victor\Desktop\Estudo\ApiDeApps\Apps\src\Apps.Domain\obj\Debug\net6.0\ref\Apps.Domain.dll
 C:\Users\Victor\Desktop\Estudo\ApiDeApps\Apps\src\Apps.Domain\obj\Debug\net6.0\Apps.Domain.pdb
+C:\Users\Victor\Desktop\Estudo\ApiDeApps\Apps\src\Apps.Domain\obj\Debug\net6.0\Apps.Domain.csproj.AssemblyReference.cache

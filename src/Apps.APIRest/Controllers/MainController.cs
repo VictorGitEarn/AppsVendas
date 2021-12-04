@@ -9,6 +9,7 @@ namespace Apps.APIRest.Controllers
 {
     [Authorize]
     [ApiController]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public abstract class MainController : ControllerBase
     {
         private readonly INotes _notes;

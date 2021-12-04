@@ -15,7 +15,6 @@ using System.Text;
 namespace Apps.APIRest.Controllers.V1
 {
     [ApiVersion("1.0")]
-    [Route("api/v{version:apiVersion}")]
     public class AuthController : MainController
     {
         private readonly SignInManager<User> _signInManager;
@@ -31,7 +30,7 @@ namespace Apps.APIRest.Controllers.V1
         }
 
         [AllowAnonymous]
-        [HttpPost("nova-conta")]
+        [HttpPost("new-account")]
         public async Task<ActionResult> Registrar(RegisterUserViewModel registerUser)
         {
             if (!ModelState.IsValid) return CustomResponse(ModelState);
@@ -61,7 +60,7 @@ namespace Apps.APIRest.Controllers.V1
         }
 
         [AllowAnonymous]
-        [HttpPost("entrar")]
+        [HttpPost("login")]
         public async Task<ActionResult> Login(LoginUserViewModel loginUser)
         {
             if (!ModelState.IsValid) return CustomResponse(ModelState);
@@ -82,7 +81,7 @@ namespace Apps.APIRest.Controllers.V1
             NotifyError("Usuário ou Senha incorretos");
             return CustomResponse(loginUser);
         }
-
+        
         private async Task<string> GerarJwt(string email)
         {
             var user = await _userManager.FindByEmailAsync(email);

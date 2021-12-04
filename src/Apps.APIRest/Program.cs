@@ -29,7 +29,11 @@ services.AddScoped<INotes, Note>();
 services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
 services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 services.AddScoped<IUser, MongoAppUser>();
-
+services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = configuration.GetConnectionString("Redis");
+    options.InstanceName = "Redis_";
+});
 services.AddScoped<IProductService, ProductService>();
 #endregion
 var app = builder.Build();
@@ -38,6 +42,7 @@ var app = builder.Build();
 
 app.MapControllers();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 if (app.Environment.IsDevelopment())

@@ -29,11 +29,11 @@ namespace Apps.Data.Base
             await _collection.UpdateOneAsync(Builders<T>.Filter.And(builders), update);
         }
 
-        public T FindById(ObjectId id)
+        public async Task<T> FindById(ObjectId id)
         {
             var filter = Filter.Eq("_id", id);
 
-            return _collection.FindSync(filter).FirstOrDefault();
+            return (await _collection.FindAsync(filter)).FirstOrDefault();
         }
 
         public async Task<List<T>> FindById(ObjectId[] ids)
