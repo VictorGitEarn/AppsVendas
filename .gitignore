@@ -404,6 +404,9 @@ yarn-error.log
 testem.log
 /typings
 obj/
+*.suo
+*.cache
+*.sentinel
 
 
 # System Files
