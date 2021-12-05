@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Apps.MessageQueue.Message
+namespace Apps.Domain.Business
 {
-    public class PaymentMessage
+    public class Payment
     {
         public string CreditCard { get; set; }
     }

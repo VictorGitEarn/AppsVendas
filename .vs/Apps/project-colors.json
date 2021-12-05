@@ -50,7 +50,17 @@
       "ProjectGuid": "1f524ce0-02d5-4917-8651-76e8197e044b",
       "DisplayName": "Apps.Services",
       "ColorIndex": 8
+    },
+    "0f6fec4f-e08c-479d-8efd-76f4f0836eae": {
+      "ProjectGuid": "0f6fec4f-e08c-479d-8efd-76f4f0836eae",
+      "DisplayName": "Apps.MessageQueue",
+      "ColorIndex": 9
+    },
+    "0fbfbf5f-2cff-4c36-ad81-a8417f10e53d": {
+      "ProjectGuid": "0fbfbf5f-2cff-4c36-ad81-a8417f10e53d",
+      "DisplayName": "Payment.Client",
+      "ColorIndex": 10
     }
   },
-  "NextColorIndex": 9
+  "NextColorIndex": 11
 }

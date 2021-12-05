@@ -6,6 +6,7 @@ using Apps.Domain.Business.Interfaces;
 using Apps.Domain.Business.Notes;
 using Apps.Services.Implementation;
 using Apps.Services.Interfaces;
+using MassTransit;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -24,6 +25,20 @@ services.ConfigureMongoDb(configuration);
 
 services.AddIdentityConfig(configuration);
 
+services.AddMassTransit(t =>
+{
+    t.AddBus(bus => Bus.Factory.CreateUsingRabbitMq(config =>
+    {
+        config.Host(new Uri("rabbitmq://localhost"), h =>
+        {
+            h.Username("guest");
+            h.Password("guest");
+        });
+    }));
+});
+
+services.AddMassTransitHostedService();
+
 #region Servicos
 services.AddScoped<INotes, Note>();
 services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
@@ -35,6 +50,7 @@ services.AddStackExchangeRedisCache(options =>
     options.InstanceName = "Redis_";
 });
 services.AddScoped<IProductService, ProductService>();
+services.AddScoped<IPaymentService, PaymentService>();
 #endregion
 var app = builder.Build();
 
