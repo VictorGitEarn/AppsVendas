@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Apps.Helpers;
+using MassTransit;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Apps.APIRest.Configuration
 {
     public static class ApiConfig
     {
-        public static IServiceCollection AddApiConfiguration(this IServiceCollection services)
+        public static IServiceCollection AddApiConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddControllers();
 
@@ -38,6 +40,29 @@ namespace Apps.APIRest.Configuration
             });
 
             services.AddSwaggerConfig();
+
+            services.AddMassTransit(t =>
+            {
+                t.AddBus(bus => Bus.Factory.CreateUsingRabbitMq(config =>
+                {
+                    config.Host(new Uri("rabbitmq://localhost"), h =>
+                    {
+                        h.Username("guest");
+                        h.Password("guest");
+                    });
+                }));
+            });
+
+            services.AddMassTransitHostedService();
+            
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = configuration.GetConnectionString("Redis");
+                options.InstanceName = "Redis_";
+            });
+
+
+            services.AddSingleton<IEncrypt_Decrypt>(x => new Encrypt_Decrypt(configuration.GetSection("key").Value));
 
             return services;
         }

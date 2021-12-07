@@ -29,6 +29,12 @@ namespace Apps.APIRest.Extentions
             return JsonSerializer.Deserialize<T>(jsonData);
         }
 
-
+        public static async Task DeleteRecordAsync(this IDistributedCache cache, string recordId)
+        {
+            var jsonData = await cache.GetStringAsync(recordId);
+            
+            if (jsonData is not null)
+                cache.Remove(recordId);
+        }
     }
 }

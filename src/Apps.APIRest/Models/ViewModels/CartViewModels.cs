@@ -1,4 +1,5 @@
 ﻿using Apps.Domain.Business;
+using MongoDB.Bson;
 
 namespace Apps.APIRest.Models.ViewModels
 {
@@ -34,6 +35,46 @@ namespace Apps.APIRest.Models.ViewModels
 
             TotalValue += product.Value * qtty;
         }
+
+        public void RemoveProduct(Product product, int qtty)
+        {
+            var productInList = Products.Where(t => t._id == product._id.ToString()).FirstOrDefault();
+
+            if (productInList is null)
+                return;
+            
+            productInList.Qtty -= qtty;
+
+            if (productInList.Qtty <= 0)
+            {
+                Products.Remove(productInList);
+                return;
+            }
+
+            return;
+        }
+
+        public Purchase MapToPurchase()
+        {
+            var productsToPurchase = new List<PurchaseProductModel>();
+
+            Products.ForEach(product =>
+            {
+                productsToPurchase.Add(new PurchaseProductModel()
+                {
+                    ProductId = new ObjectId(product._id),
+                    Qtty = product.Qtty,
+                    TotalValue = product.TotalValue
+                });
+            });
+
+            return new Purchase()
+            {
+                Status = PurchaseStatus.Open,
+                Products = productsToPurchase,
+                Value = productsToPurchase.Sum(t => t.TotalValue)
+            };
+        }
     }
 
     public class ProductCartModels : ProductModels
@@ -49,6 +90,13 @@ namespace Apps.APIRest.Models.ViewModels
             Qtty = qtty;
 
             TotalValue = product.Value * qtty;
+        }
+
+        public ProductCartModels(PurchaseProductModel purchaseProduct, Product product) : base(product)
+        {
+            Qtty = purchaseProduct.Qtty;
+
+            TotalValue = purchaseProduct.TotalValue;
         }
     }
 }

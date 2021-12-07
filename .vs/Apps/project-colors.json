@@ -60,7 +60,12 @@
       "ProjectGuid": "0fbfbf5f-2cff-4c36-ad81-a8417f10e53d",
       "DisplayName": "Payment.Client",
       "ColorIndex": 10
+    },
+    "41c6b614-e982-42a2-a051-58d16c1353ca": {
+      "ProjectGuid": "41c6b614-e982-42a2-a051-58d16c1353ca",
+      "DisplayName": "Apps.Payment.Client",
+      "ColorIndex": 11
     }
   },
-  "NextColorIndex": 11
+  "NextColorIndex": 12
 }

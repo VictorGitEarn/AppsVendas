@@ -11,8 +11,6 @@ namespace Apps.Data.Config
         {
             services.AddSingleton(options => new MongoDbContext(configuration.GetConnectionString("AppsVendas")));
 
-            services.AddScoped<ProductRepository>();
-
             return services;
         }
     }

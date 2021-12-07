@@ -1,4 +1,5 @@
-﻿using Apps.Payment.Client.Consumer;
+﻿using Apps.MessageQueue;
+using Apps.Payment.Client.Consumer;
 using Apps.Services.Interfaces;
 using MassTransit;
 using Microsoft.Extensions.Hosting;
@@ -14,12 +15,15 @@ namespace Apps.Payment.Client
     public class Worker : BackgroundService
     {
         private readonly ILogger<Worker> _logger;
-        private readonly PaymentConsumer _consumer;
+        private readonly List<IConsumerApps> _consumers;
 
-        public Worker(ILogger<Worker> logger, PaymentConsumer consumer)
+        public Worker(ILogger<Worker> logger, PaymentConsumer paymentConsumer)
         {
             _logger = logger;
-            _consumer = consumer;
+            _consumers = new List<IConsumerApps>()
+            {
+                paymentConsumer
+            };
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -34,7 +38,10 @@ namespace Apps.Payment.Client
                         h.Password("guest");
                     });
 
-                    _consumer.Attach(cfg);
+                    _consumers.ForEach(consumer =>
+                    {
+                        consumer.Attach(cfg);
+                    });
                 });
                 
                 try

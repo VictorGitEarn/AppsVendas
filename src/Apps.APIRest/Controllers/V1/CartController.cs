@@ -1,4 +1,5 @@
-﻿using Apps.APIRest.Extentions;
+﻿using Apps.APIRest.ApiService;
+using Apps.APIRest.Extentions;
 using Apps.APIRest.Models.ViewModels;
 using Apps.Domain.Business.Interfaces;
 using Apps.Services.Interfaces;
@@ -10,64 +11,55 @@ namespace Apps.APIRest.Controllers.V1
     [ApiVersion("1.0")]
     public class CartController : MainController
     {
-        private readonly IDistributedCache _cache;
         private readonly IProductService _productService;
+        private readonly IPurchaseService _purchaseService;
+        private readonly ApiCacheService _apiCacheService;
 
-        public CartController(INotes notes, IUser userApp, 
-                              IDistributedCache cache, IProductService productService) : base(notes, userApp)
+        public CartController(INotes notes, IUser userApp, IDistributedCache cache, 
+                              IProductService productService, IPurchaseService purchaseService) : base(notes, userApp)
         {
-            _cache = cache;
             _productService = productService;
+            _apiCacheService = new ApiCacheService(cache);
+            _purchaseService = purchaseService;
         }
 
         [HttpGet]
-        public async Task<ActionResult> Get()
-        {
-            return CustomResponse(await GetCartFromCache());
-        }
+        public async Task<ActionResult> Get() => CustomResponse(await _apiCacheService.GetCart(UserId));
 
         [HttpPost("{productId}/{qtty}")]
         public async Task<ActionResult> Post(string productId, int qtty)
         {
-            var cart = await GetCartFromCache();
-
             var product = await _productService.FindById(productId);
 
-            if (cart != default)
+            return CustomResponse(await _apiCacheService.AddProduct(product, qtty, UserId));
+        }
+
+        [HttpDelete("{productId}/{qtty}")]
+        public async Task<ActionResult> RemoveProduct(string productId, int qtty)
+        {
+            var product = await _productService.FindById(productId);
+
+            await _apiCacheService.RemoveProduct(product, qtty, UserId);
+
+            return CustomResponse();
+        }
+
+        [HttpPost("close-cart")]
+        public async Task<ActionResult> CloseCart()
+        {
+            var cart = await _apiCacheService.GetCart(UserId);
+
+            if (cart == default)
             {
-                cart.AddProduct(product, qtty);
-
-                await SetCartToCache(cart);
-            }
-            else
-            {
-                cart = new CartViewModels(product, qtty);
-
-                await SetCartToCache(cart);
+                NotifyError("Não é possívle fechar carrinho pois o mesmo não existe, tente adicionar um itempara criar um carrinho.");
+                return CustomResponse();
             }
 
-            return CustomResponse(cart);
-        }
+            var purchase = cart.MapToPurchase();
 
-        private string GetRecordId()
-        {
-            return $"Cart_{UserId}_{DateTime.Now:ddMMyyyy}";
-        }
+            await _apiCacheService.DeleteCart(UserId);
 
-        private async Task<CartViewModels> GetCartFromCache()
-        {
-            var recordId = GetRecordId();
-
-            var result = await _cache.GetRecordAsync<CartViewModels>(recordId);
-
-            return result;
-        }
-
-        private async Task SetCartToCache(CartViewModels cart)
-        {
-            var recordId = GetRecordId();
-
-            await _cache.SetRecordAsync(recordId, cart);
+            return CustomResponse(await _purchaseService.Create(purchase));
         }
     }
 }

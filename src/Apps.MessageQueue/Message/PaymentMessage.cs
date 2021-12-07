@@ -8,6 +8,6 @@ namespace Apps.MessageQueue.Message
 {
     public class PaymentMessage
     {
-        public string CreditCard { get; set; }
+        public string PaymentId { get; set; }
     }
 }

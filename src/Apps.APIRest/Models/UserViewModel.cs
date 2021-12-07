@@ -32,7 +32,7 @@ namespace Apps.APIRest.Models
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         public Address Address { get; set; }
 
-        public User MapearParaUser()
+        public User MapToUser()
         {
             return new User()
             {

@@ -22,6 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Apps.Data\Apps.Data.csproj" />
     <ProjectReference Include="..\Apps.Domain\Apps.Domain.csproj" />
+    <ProjectReference Include="..\Apps.Helpers\Apps.Helpers.csproj" />
     <ProjectReference Include="..\Apps.MessageQueue\Apps.MessageQueue.csproj" />
     <ProjectReference Include="..\Apps.Services\Apps.Services.csproj" />
   </ItemGroup>

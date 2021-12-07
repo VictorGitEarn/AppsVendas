@@ -41,7 +41,7 @@ namespace Apps.APIRest.Controllers.V1
                 return CustomResponse(registerUser);
             }
 
-            var user = registerUser.MapearParaUser();
+            var user = registerUser.MapToUser();
 
             var result = await _userManager.CreateAsync(user, registerUser.Password);
 

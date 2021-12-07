@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Apps.Helpers\Apps.Helpers.csproj" />
     <ProjectReference Include="..\Apps.MessageQueue\Apps.MessageQueue.csproj" />
     <ProjectReference Include="..\Apps.Services\Apps.Services.csproj" />
   </ItemGroup>

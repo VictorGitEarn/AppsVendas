@@ -1,11 +1,12 @@
-﻿using Apps.MessageQueue.Message;
+﻿using Apps.MessageQueue;
+using Apps.MessageQueue.Message;
 using Apps.Services.Interfaces;
 using MassTransit;
 using MassTransit.RabbitMqTransport;
 
 namespace Apps.Payment.Client.Consumer
 {
-    public class PaymentConsumer : IConsumer<PaymentMessage>
+    public class PaymentConsumer : IConsumer<PaymentMessage>, IConsumerApps
     {
         private readonly IPaymentService _paymentService;
 
@@ -32,7 +33,7 @@ namespace Apps.Payment.Client.Consumer
         {
             var message = context.Message;
 
-            await _paymentService.ConsumeMessage(new Domain.Business.Payment() { CreditCard = message.CreditCard });
+            await _paymentService.ConsumeMessage(message);
         }
     }
 }

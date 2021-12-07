@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "zL4jkKkm9y4vsGmiIJgK2D8xpgWcM0iXT5GXNQnWJ1iJFdFih3/yKVqZt9TSLdjsr/ZM4kI05tWS5ee6i08I3w==",
+  "dgSpecHash": "O2HJ0SbmEvrxo3Vp/cvsTu9Rj+rzPILjm3Ak4CFkP/PuQhMlGOl64t0rFQsl55z5Pz501PaLN1U2LZzNtAdccg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Victor\\Desktop\\Estudo\\ApiDeApps\\Apps\\src\\Apps.APIRest\\Apps.APIRest.csproj",
   "expectedPackageFiles": [
@@ -20,6 +20,7 @@
     "C:\\Users\\Victor\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\Victor\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\6.0.0\\microsoft.extensions.caching.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\Victor\\.nuget\\packages\\microsoft.extensions.caching.stackexchangeredis\\6.0.0\\microsoft.extensions.caching.stackexchangeredis.6.0.0.nupkg.sha512",
+    "C:\\Users\\Victor\\.nuget\\packages\\microsoft.extensions.configuration\\6.0.0\\microsoft.extensions.configuration.6.0.0.nupkg.sha512",
     "C:\\Users\\Victor\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\6.0.0\\microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\Victor\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\6.0.0\\microsoft.extensions.dependencyinjection.6.0.0.nupkg.sha512",
     "C:\\Users\\Victor\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
