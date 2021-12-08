@@ -1,26 +1,18 @@
 ﻿using Apps.Domain.Business;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MongoDB.Bson;
 
 namespace Apps.Services.Interfaces
 {
     public interface IPurchaseService
     {
-        public Task<Purchase> Get(string id);
+        public Task<Purchase> Get(ObjectId id, ObjectId userId);
 
-        public Task<List<Purchase>> GetAll();
+        public Task<List<Purchase>> GetAll(ObjectId userId);
 
-        public Task<Purchase> AddProduct(string id);
-        
-        public Task<Purchase> RemoveProduct(string id);
+        public Task<bool> DeletePurchase(ObjectId id, ObjectId userId);
 
-        public Task DeleteProduct(string id);
+        public Task<Purchase> Create(Purchase purchase, ObjectId userId);
 
-        public Task<Purchase> Create(Purchase purchase);
-
-        public Task ClosePurchase(Purchase purchase, List<Payment> payment);
+        public Task<bool> ClosePurchase(Purchase purchase, List<Payment> payment);
     }
 }

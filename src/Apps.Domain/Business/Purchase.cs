@@ -1,4 +1,5 @@
 ﻿using Apps.Domain.Base;
+using Apps.Domain.Observer;
 using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
@@ -18,14 +19,16 @@ namespace Apps.Domain.Business
 
         public List<ObjectId> Payments { get; set; }
 
-        public PurchaseStatus Status { get; set; } 
+        public PurchaseStatus Status { get; set; }
     }
 
     public enum PurchaseStatus
     {
         Open = 0,
-        Closed = 1,
-        Error = 2,
+        Processing = 1,
+        Closed = 2,
+        PaymentRefused = 3,
+        Error = 4,
     }
 
     public class PurchaseProductModel

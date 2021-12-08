@@ -1,5 +1,6 @@
 ﻿using Apps.Data.Base;
 using Apps.Domain.Business;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,17 @@ namespace Apps.Data.Repository
             );
 
             return (await FindAsync(where)).FirstOrDefault();
+        }
+
+        public async Task<List<CreditCard>> FindAllByUser(ObjectId userId)
+        {
+            var filter = Builders<CreditCard>.Filter;
+
+            var where = filter.And(
+                filter.Eq(x => x.UserId, userId)
+            );
+
+            return await FindAsync(where);
         }
     }
 }

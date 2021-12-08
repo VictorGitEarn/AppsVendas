@@ -36,7 +36,7 @@ namespace Apps.Data.Base
             return (await _collection.FindAsync(filter)).FirstOrDefault();
         }
 
-        public async Task<List<T>> FindById(ObjectId[] ids)
+        public async Task<List<T>> FindByIds(List<ObjectId> ids)
         {
             var filter = Filter.In("_id", ids);
 
@@ -45,7 +45,9 @@ namespace Apps.Data.Base
 
         public DeleteResult Delete(ObjectId id)
         {
-            var where = Filter.Eq("_id", id);
+            var where = Filter.And(
+                Filter.Eq("_id", id)
+            );
 
             return _collection.DeleteOne(where);
         }
@@ -58,6 +60,18 @@ namespace Apps.Data.Base
         public async Task<List<T>> FindAll()
         {
             return await _collection.Find(_ => true).ToListAsync();
+        }
+        
+        public void Replace(T document)
+        {
+            var id = document.GetType().GetProperty("_id").GetValue(document, null);
+
+            if (!(id is ObjectId) || (ObjectId)id == default(ObjectId))
+            {
+                throw new ArgumentException("_id deve ser informado no objeto");
+            }
+
+            _collection.ReplaceOne(Filter.Eq("_id", id), document);
         }
     }
 }

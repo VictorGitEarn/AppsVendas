@@ -65,7 +65,17 @@
       "ProjectGuid": "41c6b614-e982-42a2-a051-58d16c1353ca",
       "DisplayName": "Apps.Payment.Client",
       "ColorIndex": 11
+    },
+    "72767bea-9065-4aaf-be1d-45f4d0284369": {
+      "ProjectGuid": "72767bea-9065-4aaf-be1d-45f4d0284369",
+      "DisplayName": "Apps.Helpers",
+      "ColorIndex": 12
+    },
+    "f1330049-fc50-4a02-a99b-e569806010d0": {
+      "ProjectGuid": "f1330049-fc50-4a02-a99b-e569806010d0",
+      "DisplayName": "Apps.Security",
+      "ColorIndex": 13
     }
   },
-  "NextColorIndex": 12
+  "NextColorIndex": 14
 }

@@ -16,54 +16,54 @@ namespace Apps.Services.Implementation
     {
         private readonly IBusControl _bus;
         private readonly PurchaseRepository _purchaseRepository;
+        private readonly IPaymentService _paymentService;
 
-        public PurchaseService(IBusControl bus, PurchaseRepository purchaseRepository)
+        public PurchaseService(IBusControl bus, PurchaseRepository purchaseRepository, IPaymentService paymentService)
         {
             _bus = bus;
             _purchaseRepository = purchaseRepository;
+            _paymentService = paymentService;
         }
 
-        public Task<Purchase> AddProduct(string id)
+        public async Task<bool> ClosePurchase(Purchase purchase, List<Payment> payments)
         {
-            throw new NotImplementedException();
+            await _paymentService.InsertPayments(payments);
+
+            purchase.Payments = payments.Select(t => t._id).ToList();
+
+            purchase.Status = PurchaseStatus.Processing;
+
+            _purchaseRepository.Replace(purchase);
+
+            await PublishPaymentMessage(payments);
+
+            return true;
         }
 
-        public Task ClosePurchase(Purchase purchase, List<Payment> payment)
+        public async Task<Purchase> Create(Purchase purchase, ObjectId userId)
         {
-            throw new NotImplementedException();
-        }
+            purchase.UserId = userId;
 
-        public async Task<Purchase> Create(Purchase purchase)
-        {
             await _purchaseRepository.Insert(purchase);
 
             return purchase;
         }
 
-        public Task DeleteProduct(string id)
+        public async Task<bool> DeletePurchase(ObjectId id, ObjectId userId)
         {
-            throw new NotImplementedException();
+            var purchase = await Get(id, userId);
+
+            if (purchase == null || purchase.Status is not PurchaseStatus.Open)
+                return false;
+
+            _purchaseRepository.Delete(id);
+
+            return true;
         }
 
-        public Task<Purchase> Get(string id)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<Purchase> Get(ObjectId id, ObjectId userId) => await _purchaseRepository.GetById(id, userId);
 
-        public Task<List<Purchase>> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Purchase> GetById(string id)
-        {
-            return _purchaseRepository.FindById(new ObjectId(id));
-        }
-
-        public Task<Purchase> RemoveProduct(string id)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<List<Purchase>> GetAll(ObjectId userId) => await _purchaseRepository.GetAllByUser(userId);
 
         private async Task PublishPaymentMessage(List<Payment> payments)
         {
@@ -75,16 +75,16 @@ namespace Apps.Services.Implementation
                 {
                     var enpoint = await _bus.GetSendEndpoint(new Uri("exchange:apps_payments"));
 
+                    await _paymentService.UpdatePaymentStatus(payment, PaymentStatus.Processing);
+
                     await enpoint.Send(new PaymentMessage()
                     {
                         PaymentId = payment._id.ToString()
                     });
-
-                    //atualizar payment para processando
                 }
                 catch (Exception)
                 {
-                    //atualizar status para erro interno
+                    await _paymentService.UpdatePaymentStatus(payment, PaymentStatus.InternalError);
                 }
                 finally
                 {

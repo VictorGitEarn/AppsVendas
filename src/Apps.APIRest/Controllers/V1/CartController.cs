@@ -26,22 +26,34 @@ namespace Apps.APIRest.Controllers.V1
         [HttpGet]
         public async Task<ActionResult> Get() => CustomResponse(await _apiCacheService.GetCart(UserId));
 
-        [HttpPost("{productId}/{qtty}")]
+        [HttpPost("add-product")]
         public async Task<ActionResult> Post(string productId, int qtty)
         {
             var product = await _productService.FindById(productId);
 
+            if (product is null)
+            {
+                NotifyError("Produto não foi localizado.");
+                return CustomResponse();
+            }
+
             return CustomResponse(await _apiCacheService.AddProduct(product, qtty, UserId));
         }
 
-        [HttpDelete("{productId}/{qtty}")]
+        [HttpPost("remove-product")]
         public async Task<ActionResult> RemoveProduct(string productId, int qtty)
         {
             var product = await _productService.FindById(productId);
 
+            if (product is null)
+            {
+                NotifyError("Produto não foi localizado.");
+                return CustomResponse();
+            }
+
             await _apiCacheService.RemoveProduct(product, qtty, UserId);
 
-            return CustomResponse();
+            return CustomResponse(await _apiCacheService.GetCart(UserId));
         }
 
         [HttpPost("close-cart")]
@@ -51,7 +63,7 @@ namespace Apps.APIRest.Controllers.V1
 
             if (cart == default)
             {
-                NotifyError("Não é possívle fechar carrinho pois o mesmo não existe, tente adicionar um itempara criar um carrinho.");
+                NotifyError("Não é possívle fechar carrinho pois o mesmo não existe, tente adicionar um item para criar um carrinho.");
                 return CustomResponse();
             }
 
@@ -59,7 +71,9 @@ namespace Apps.APIRest.Controllers.V1
 
             await _apiCacheService.DeleteCart(UserId);
 
-            return CustomResponse(await _purchaseService.Create(purchase));
+            await _purchaseService.Create(purchase, UserId);
+
+            return CustomResponse(purchase._id.ToString());
         }
     }
 }

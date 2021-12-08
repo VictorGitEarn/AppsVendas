@@ -4,6 +4,7 @@ using Apps.Domain.Business.Interfaces;
 using Apps.Domain.Business.Notes;
 using Apps.Services.Implementation;
 using Apps.Services.Interfaces;
+using Apps.Services.Observer;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
@@ -23,10 +24,12 @@ namespace Apps.APIRest.Configuration
             services.AddScoped<ProductRepository>();
             services.AddScoped<IProductService, ProductService>();
 
-
+            services.AddScoped<CreditCardRepository>();
+            services.AddScoped<PaymentRepository>();
+            services.AddScoped<IPaymentObserverService, PaymentObserverService>();
             services.AddScoped<IPaymentService, PaymentService>();
 
-
+            services.AddScoped<PurchaseRepository>();
             services.AddScoped<IPurchaseService, PurchaseService>();
 
             return services;

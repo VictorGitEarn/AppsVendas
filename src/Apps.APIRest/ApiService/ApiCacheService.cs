@@ -48,6 +48,8 @@ namespace Apps.APIRest.ApiService
                 return;
 
             cart.RemoveProduct(product, qtty);
+
+            await RefreshCart(cart, userId);
         }
 
         private async Task<CartViewModels> GetCartFromCache(ObjectId userId)
@@ -71,6 +73,13 @@ namespace Apps.APIRest.ApiService
             var recordId = GetRecordId(userId);
 
             await _cache.DeleteRecordAsync(recordId);
+        }
+
+        private async Task RefreshCart(CartViewModels cart, ObjectId userId)
+        {
+            await DeleteCart(userId);
+
+            await SetCartToCache(cart, userId);
         }
     }
 }

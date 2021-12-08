@@ -37,5 +37,10 @@ namespace Apps.Services.Implementation
         {
             return await _productRepository.FindById(new ObjectId(id));
         }
+
+        public async Task<List<Product>> FindByIds(List<ObjectId> ids)
+        {
+            return await _productRepository.FindByIds(ids);
+        }
     }
 }

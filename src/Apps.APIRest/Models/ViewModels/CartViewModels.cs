@@ -45,13 +45,16 @@ namespace Apps.APIRest.Models.ViewModels
             
             productInList.Qtty -= qtty;
 
+            productInList.TotalValue -= product.Value * qtty;
+
             if (productInList.Qtty <= 0)
             {
                 Products.Remove(productInList);
-                return;
             }
 
-            return;
+            TotalValue -= product.Value * qtty;
+
+            Qtty -= qtty;
         }
 
         public Purchase MapToPurchase()

@@ -1,4 +1,5 @@
 ﻿using Apps.Domain.Business;
+using MongoDB.Bson;
 using System.ComponentModel.DataAnnotations;
 
 namespace Apps.APIRest.Models.ViewModels
@@ -19,13 +20,13 @@ namespace Apps.APIRest.Models.ViewModels
 
         public List<PaymentModel> Payments { get; set; }
 
-        public PurchaseStatus PurchaseStatus { get; set; }
+        public string PurchaseStatus { get; set; }
 
         public PurchaseModel(Purchase purchase, List<Product> products, List<Payment> payments, List<CreditCard> creditCards)
         {
             _id = purchase._id.ToString();
             Number = purchase.Number;
-            PurchaseStatus = purchase.Status;
+            PurchaseStatus = purchase.Status.ToString();
             TotalValue = purchase.Value;
             Qtty = purchase.Products.Sum(t => t.Qtty);
             Products = purchase.Products.Select(t => new ProductCartModels(t, products.First(p => p._id == t.ProductId))).ToList();
@@ -37,29 +38,27 @@ namespace Apps.APIRest.Models.ViewModels
     {
         public PaymentModel() { }
 
-        [Required(ErrorMessage = "O campo {0} é obrigatório")]
         public PaymentType PaymentType { get; set; }
 
-        public PaymentStatus PaymentStatus { get; set; }
+        public string Status { get; set; }
 
-        [Required(ErrorMessage = "O campo {0} é obrigatório")]
         public CreditCardModel CreditCard { get; set; }
 
-        [Required(ErrorMessage = "O campo {0} é obrigatório")]
         public double Value { get; set; }
 
         public PaymentModel(Payment payment, List<CreditCard> creditCards)
         {
             PaymentType = payment.Type;
-            PaymentStatus = payment.Status;
+            Status = payment.Status.ToString();
             Value = payment.Value;
             CreditCard = new CreditCardModel(creditCards.First(t => t._id == payment.CreditCardId));
         }
 
-        public Payment MapToPayment()
+        public Payment MapToPayment(ObjectId userId)
         {
             return new Payment()
             {
+                UserId = userId,
                 Type = PaymentType,
                 Value = Value
             };
@@ -88,16 +87,18 @@ namespace Apps.APIRest.Models.ViewModels
 
         public CreditCardModel(CreditCard creditCard)
         {
+            SaveCreditCardInfo = creditCard.SaveCreditCardInfo;
             CreditCardNumber = creditCard.CreditCardNumber;
             CVV = creditCard.CVV;
             ExpireDate = creditCard.ExpireDate;
             FullName = creditCard.FullName;
         }
 
-        public CreditCard MapToCreditCard()
+        public CreditCard MapToCreditCard(ObjectId userId)
         {
             return new CreditCard()
             {
+                UserId = userId,
                 SaveCreditCardInfo = SaveCreditCardInfo,
                 CreditCardNumber = CreditCardNumber,
                 FullName = FullName,

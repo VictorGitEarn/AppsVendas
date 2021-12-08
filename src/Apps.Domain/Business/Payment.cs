@@ -1,4 +1,5 @@
 ﻿using Apps.Domain.Base;
+using Apps.Domain.Observer;
 using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace Apps.Domain.Business
     public class Payment : EntityWithUserBase
     {
         public PaymentStatus Status { get; set; }
-        
+
         public PaymentType Type { get; set; }
 
         public double Value { get; set; }
@@ -22,9 +23,10 @@ namespace Apps.Domain.Business
     public enum PaymentStatus
     {
         Created = 0,
-        Closed = 1,
-        Refused = 2,
-        InternalError = 3
+        Processing = 1,
+        Closed = 2,
+        Refused = 3,
+        InternalError = 4
     }
 
     public enum PaymentType
