@@ -30,7 +30,8 @@ namespace Apps.Data.Repository
             var filter = Builders<CreditCard>.Filter;
 
             var where = filter.And(
-                filter.Eq(x => x.UserId, userId)
+                filter.Eq(x => x.UserId, userId),
+                filter.Eq(x => x.SaveCreditCardInfo, true)
             );
 
             return await FindAsync(where);

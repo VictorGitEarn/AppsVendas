@@ -72,8 +72,7 @@ namespace Apps.Services.Implementation
 
             cards.ForEach(card =>
             {
-                if (card.SaveCreditCardInfo)
-                    DecryptCrediCardData(card);
+                DecryptCrediCardData(card);
             });
 
             return cards;
