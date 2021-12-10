@@ -75,7 +75,12 @@
       "ProjectGuid": "f1330049-fc50-4a02-a99b-e569806010d0",
       "DisplayName": "Apps.Security",
       "ColorIndex": 13
+    },
+    "6af06623-de9b-4f70-aa82-fc63e4bd8866": {
+      "ProjectGuid": "6af06623-de9b-4f70-aa82-fc63e4bd8866",
+      "DisplayName": "Apps.Tests",
+      "ColorIndex": 14
     }
   },
-  "NextColorIndex": 14
+  "NextColorIndex": 15
 }

@@ -21,7 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{7EAD
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apps.Payment.Client", "src\Apps.Payment.Client\Apps.Payment.Client.csproj", "{41C6B614-E982-42A2-A051-58D16C1353CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apps.Helpers", "src\Apps.Helpers\Apps.Helpers.csproj", "{72767BEA-9065-4AAF-BE1D-45F4D0284369}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apps.Helpers", "src\Apps.Helpers\Apps.Helpers.csproj", "{72767BEA-9065-4AAF-BE1D-45F4D0284369}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
